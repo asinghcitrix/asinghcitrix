@@ -20,7 +20,7 @@ data "aws_eks_cluster_auth" "main" {
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  version = "3.0.0"
+  version = "3.14.0"  # Update to a more recent version
 
   name = "eks-vpc"
   cidr = "10.0.0.0/16"
@@ -32,6 +32,7 @@ module "vpc" {
   enable_nat_gateway = true
   single_nat_gateway = true
 }
+
 
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"

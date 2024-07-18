@@ -5,7 +5,7 @@ provider "aws" {
 
 # Create an EKS cluster
 resource "aws_eks_cluster" "cluster" {
-  name     = "my-eks-cluster"  # Replace with your desired cluster name
+  name     = "ashish"  # Replace with your desired cluster name
   role_arn = aws_iam_role.eks_cluster_role.arn
 
   vpc_config {

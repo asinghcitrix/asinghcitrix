@@ -1,25 +1,28 @@
-variable "aws_region" {
-  description = "The AWS region to deploy to"
-  default     = "us-east-2"  # Replace if needed
+provider "aws" {
+  region = "us-east-2"  # Replace with "us-east-2" if hardcoding
 }
 
-variable "ecr_repository_url" {
-  description = "The URL of the ECR repository"
-  default     = "637423421797.dkr.ecr.us-east-2.amazonaws.com/devops-fortune-api"  # Replace if needed
+# Include IAM roles and policies
+module "iam" {
+  source = "./iam.tf"
 }
 
-variable "cluster_name" {
-  description = "The name of the ECS cluster"
-  default     = "devops-fortune-cluster"  # Replace if needed
+# Include ECS Cluster
+module "ecs_cluster" {
+  source = "./ecs-cluster.tf"
 }
 
-variable "service_name" {
-  description = "The name of the ECS service"
-  default     = "devops-fortune-service"  # Replace if needed
+# Include ECS Task Definition
+module "ecs_task_definition" {
+  source = "./ecs-task-definition.tf"
 }
 
-variable "task_family" {
-  description = "The family name of the ECS task definition"
-  default     = "devops-fortune-task"  # Replace if needed
+# Include ECS Service
+module "ecs_service" {
+  source = "./ecs-service.tf"
 }
 
+# Include Networking (VPC, Subnets, Security Groups)
+module "networking" {
+  source = "./networking.tf"
+}
